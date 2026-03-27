@@ -22,7 +22,7 @@ RUN yarn global add serve
 # copy built files only
 COPY --from=build /app/build ./build
 
-# create non-root user
+# non-root user
 RUN adduser -S appuser
 USER appuser
 
