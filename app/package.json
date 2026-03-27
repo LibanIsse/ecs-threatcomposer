@@ -1,7 +1,7 @@
 {
   "name": "threat-composer-app",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -128,5 +128,8 @@
   "resolutions": {
     "@types/express": "4.17.13",
     "@types/express-serve-static-core": "4.19.0"
+
   }
+
+
 }
