@@ -1,0 +1,31 @@
+# build stage
+FROM node:18 AS build
+
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+RUN yarn build
+
+# runtime stage
+FROM node:18-alpine
+
+WORKDIR /app
+
+# install simple server
+RUN yarn global add serve
+
+# copy built files only
+COPY --from=build /app/build ./build
+
+# create non-root user
+RUN adduser -S appuser
+USER appuser
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build", "-l", "3000"]
